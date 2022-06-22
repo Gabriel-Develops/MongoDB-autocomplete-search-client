@@ -10,3 +10,11 @@ img {
 input {
     width: 400px;
 }
+
+#movie-image {
+    float: left;
+}
+
+#movie-info {
+    float: left;
+}
