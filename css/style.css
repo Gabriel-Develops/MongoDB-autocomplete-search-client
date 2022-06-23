@@ -1,20 +1,128 @@
+/* Box Model Hack */
+* {
+    box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+/* ----- Base Styling ----- */
+/* Base styles */
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 62.5%;
+}
 body {
-    margin-left: 3%;
-    margin-top: 2%;
+    background: #f9f7e8;
+    min-height: 100vh;
+    padding: 3%;
 }
 
-img {
-    max-height: 500px;
-}
-
-input {
-    width: 400px;
-}
-
+/* Layout */
 #movie-image {
+    width: 20%;
     float: left;
 }
-
 #movie-info {
+    width: 80%;
     float: left;
+    padding: 10px 200px;
+}
+
+/* Lettering */
+p, label, input, li, span {
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+h1 {
+    font-family: 'Joan', serif;
+    font-size: 8rem;
+    margin: 0;
+}
+h2 {
+    font-size: 2.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+ul.movie-list {
+    list-style: none;
+    padding: 0;
+}
+ul.movie-list li {
+    width: max-content;
+    display: inline-block;
+}
+
+/* Input Section */
+label, 
+#title {
+    height: 4rem;
+    font-size: 3rem ;
+    margin-bottom: 4rem;
+    display: inline-block;
+}
+
+/* Poster Image */
+#movie-poster {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+/* Quick Information */
+#movie-quick-info li {
+    background: #efe8d8;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+/* imdb logo and score */
+#imdb-container * {
+    height: 8rem;
+    vertical-align: middle;
+}
+
+#imdb-rating {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-left: 20px;
+}
+
+/* Production */
+#movie-production li {
+    margin-right: 30px;
+    line-height: 3rem;
+}
+
+#movie-production li p {
+    width: max-content;
+    margin: 0 auto;
+}
+#movie-production li p:first-of-type { /*Title*/
+    font-weight: 500;
+}
+
+/* Plot */
+#movie-plot {
+    line-height: 2.25rem;
+}
+
+/* Cast */
+#movie-cast li {
+    padding-right: 45px;
 }

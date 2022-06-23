@@ -13,7 +13,7 @@ $(document).ready(() => {
             })
             res(data)
         },
-        minLength: 3,
+        minLength: 0,
         select: (event, ui) => {
             // console.log(ui.item.id) // We want to pass in the id of the movie and not the name to prevent duplicates being confused
             fetch(`https://mongodb-movie-db-sample.herokuapp.com/get/${ui.item.id}`)
@@ -26,6 +26,7 @@ $(document).ready(() => {
                     $('#movie-cast').empty()
                     $('#imdb').empty()
                     $('#imdb-rating').empty()
+                    $('#movie-production').empty()
                     
                     // Movie Title
                     $('#movie-title').text(result.title)
@@ -41,7 +42,9 @@ $(document).ready(() => {
                     let runtime = result.runtime
                     $('#movie-quick-info').append(`<li>${Math.floor(runtime / 60)}h ${runtime % 60}m</li>`)
 
-                    // Movie cast                    
+                    // Movie cast       
+                    if (document.querySelector('#cast-tag').textContent === '')
+                        document.querySelector('#cast-tag').textContent = 'Cast'             
                     result.cast.forEach(cast => $('#movie-cast').append(`<li>${cast}</li>`))
 
                     // Movie poster
@@ -66,7 +69,41 @@ $(document).ready(() => {
                     document.querySelector('#imdb-rating').textContent = `${result.imdb.rating}/10`
 
                     // Movie plot
+                    if (document.querySelector('#production-tag').textContent === '')
+                        document.querySelector('#production-tag').textContent = 'Production'
+
                     document.querySelector('#movie-plot').textContent = result.fullplot
+
+                    // Movie Production team
+                    // (directors and writers)
+                    if (document.querySelector('#plot-tag').textContent === '')
+                        document.querySelector('#plot-tag').textContent = 'Storyline'
+                    
+                    const production = {}
+
+                    if ('directors' in result)
+                        result.directors.forEach(director => production[director] = 'Director')
+
+                    if ('writers' in result) {
+                        result.writers.forEach(writer => {
+                            if (writer in production)
+                                return production[writer] = `${production[writer]}, Writer`
+                            else
+                                return production[writer] = 'Writer'
+                        })
+                    }
+                    // console.log(production)
+                    
+                    for (const producer in production) {
+                        const li = document.createElement('li')
+                        const pName = document.createElement('p')
+                        pName.textContent = producer
+                        const pTitle = document.createElement('p')
+                        pTitle.textContent = production[producer]
+
+                        li.append(pName, pTitle)
+                        document.querySelector('#movie-production').append(li)
+                    }
                 })
         }
     })
