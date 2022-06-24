@@ -30,7 +30,7 @@ body {
 }
 
 /* Layout */
-#movie-image {
+#left-container {
     width: 20%;
     float: left;
 }
@@ -70,9 +70,25 @@ ul.movie-list li {
 label, 
 #title {
     height: 4rem;
-    font-size: 3rem ;
+    font-size: 3rem;
+    vertical-align: bottom;
     margin-bottom: 4rem;
     display: inline-block;
+}
+#movie-image:empty + #random {
+    display: none;
+}
+#movie-image:not(:empty) +#random { 
+    display: inline-block;
+    width: 100%;
+    height: 4rem;
+    font-size: 3rem;
+    margin-top: 1rem;
+    background: #e54b4b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Poster Image */
