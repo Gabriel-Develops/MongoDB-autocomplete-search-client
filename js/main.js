@@ -30,6 +30,7 @@ document.querySelector('#random').addEventListener('click', fetchRandom)
 async function fetchRandom() {
     let response = await fetch('https://mongodb-movie-db-sample.herokuapp.com/rand')
     let result = await response.json()
+    console.log(result)
     movieToDom(result)
 }
 
@@ -64,7 +65,7 @@ function movieToDom(result) {
 
     // Movie poster
     const img = document.createElement('img')
-    img.src = result.poster
+    img.src = result.poster || 'https://mongodb-movie-db-sample.herokuapp.com/images/poster-holder.jpg'
     img.id = 'movie-poster'
     document.querySelector('#movie-image').append(img)
 
